@@ -1,0 +1,144 @@
+# FitTrack – Fitness Center Membership & Retention Analytics
+
+## Capstone Project Title
+**FitTrack: Fitness Center Membership & Retention Intelligence Platform**
+
+---
+
+## Project Idea & Brief Description
+
+FitTrack is a full-stack MERN (MongoDB, Express.js, React, Node.js) web application designed to help fitness center administrators monitor member engagement, predict churn, and improve retention outcomes through data-driven analytics.
+
+### The Problem
+Fitness centers lose 30–50% of members within the first year, primarily because they lack real-time visibility into member behaviour, attendance patterns, and membership expiry. Manual spreadsheets and disconnected tools make it impossible to act proactively.
+
+### The Solution
+FitTrack provides a centralised analytics dashboard where admins can:
+- **Track all members** — Add, view, update, and delete member records
+- **Monitor attendance** — Record check-ins and view attendance trends
+- **Manage memberships** — Track active plans, renewal dates, and expirations
+- **Analyse retention** — View renewal rates, non-renewal rates, and engagement scores
+- **Identify at-risk members** — AI-powered insights flag members likely to churn
+- **Download reports** — Export analytical reports as CSV for stakeholders
+- **Upload datasets** — Import bulk member data via CSV uploads
+
+### Tech Stack
+| Layer | Technology |
+|-------|-----------|
+| Frontend | React 18 + Vite + React Router + Axios + Lucide Icons |
+| Backend | Node.js + Express.js + JWT Authentication |
+| Database | MongoDB + Mongoose ODM |
+| AI Feature | Gemini API — Retention Insights Assistant |
+| Testing | Jest + Supertest |
+| DevOps | Docker + Docker Compose + Render + Vercel |
+| API Docs | Bruno Collections |
+
+---
+
+## Day-by-Day Capstone Development Plan
+
+### Week 1 — Foundation & Backend
+
+| Day | Date | Tasks |
+|-----|------|-------|
+| **Day 1** | Nov 18 | Set up GitHub repository · Initialise MERN project structure · Create `.gitignore` and root `package.json` · Define folder layout (`backend/`, `frontend/`, `tests/`, `bruno/`) |
+| **Day 2** | Nov 19 | Design MongoDB schema — `User`, `Member`, `Membership`, `Attendance` models · Set up Express server with CORS + Morgan + dotenv · Connect MongoDB with graceful offline fallback · Create health check endpoint |
+| **Day 3** | Nov 20 | Build all CRUD APIs for Members — GET all, GET by ID, POST, PUT, DELETE · Implement offline fallback store for development without MongoDB · Test all endpoints manually |
+| **Day 4** | Nov 21 | Build Attendance APIs — record check-ins, view attendance history · Build Membership APIs — list plans, update status, track expiry dates · Build Analytics API — renewal rate, non-renewal rate, avg attendance, engagement score |
+| **Day 5** | Nov 22 | Implement JWT Authentication — register, login, protected routes · Build admin login controller with offline fallback · Create `authMiddleware.js` to guard private routes · Add `bcryptjs` password hashing |
+| **Day 6** | Nov 23 | Implement Google OAuth simulation (third-party auth) · Add CSV file upload endpoint using `multer` · Build Reports API — generate and download CSV analytical reports · Set up Bruno API collection with all endpoints documented |
+| **Day 7** | Nov 24 | Write Jest + Supertest automated tests for auth, member CRUD, and analytics · Fix all failing tests · Run full backend test suite · Review and clean up all backend code |
+
+---
+
+### Week 2 — Frontend, AI & Deployment
+
+| Day | Date | Tasks |
+|-----|------|-------|
+| **Day 8** | Nov 25 | Initialise React 18 + Vite frontend · Set up React Router for all pages · Create `AuthContext` for JWT state management · Build `ProtectedRoute` component · Configure Vite proxy to backend |
+| **Day 9** | Nov 26 | Build Login page (username/password + Google OAuth button) · Build Navbar and Sidebar components · Build Dashboard page with KPI cards (total members, renewals, cancellations, avg attendance) |
+| **Day 10** | Nov 27 | Build Members page — data table with Add/Edit/Delete modals · Build Attendance page — check-in recorder and history table · Build Membership page — plan cards with expiry tracking |
+| **Day 11** | Nov 28 | Build Analytics page — renewal rate chart, engagement levels, at-risk member list · Build Reports page — download CSV buttons for all report types · Build CSV Upload modal for bulk data import |
+| **Day 12** | Nov 29 | Integrate Gemini API for AI Retention Insights Assistant · Build `RetentionAiModal` component that analyses member stats and suggests engagement strategies · Connect all frontend pages to backend APIs via Axios service layer |
+| **Day 13** | Nov 30 | Write Dockerfiles for frontend and backend · Create `docker-compose.yml` for multi-container local deployment · Test full Docker deployment locally · Set up `render.yaml` for backend cloud deployment |
+| **Day 14** | Dec 1 | Deploy backend to Render.com · Deploy frontend to Vercel · Configure environment variables in cloud · Verify full-stack app runs in production · Fix any deployment issues |
+| **Day 15** | Dec 2 | Final review — test all 7 pages end-to-end · Complete Bruno API documentation · Write `DEFENCE_GUIDE.md` for technical defence prep · Final commit and push · Submit project + prepare for technical defence presentation |
+
+---
+
+## Application Pages
+
+| Page | Route | Features |
+|------|-------|---------|
+| Login | `/login` | Username/password + Google OAuth |
+| Dashboard | `/` | KPI cards, quick stats |
+| Members | `/members` | Full CRUD with modal forms |
+| Attendance | `/attendance` | Check-in recorder + history |
+| Membership | `/membership` | Plan management + expiry tracking |
+| Analytics | `/analytics` | Charts, renewal rates, at-risk list |
+| Reports | `/reports` | Downloadable CSV reports |
+
+---
+
+## Key Analytics Metrics
+
+- **Total Registered Members** — count from live database
+- **Renewal Rate** — `(renewed / total) × 100`
+- **Non-Renewal Rate** — `(cancelled / total) × 100`
+- **Average Attendance** — mean check-ins per member per month
+- **Member Engagement Levels** — High / Medium / Low / At-Risk scoring
+- **Potentially At-Risk Members** — members with low attendance + near-expiry membership
+
+---
+
+## Project Repository Structure
+
+```
+fitness_membership_analysis/
+├── backend/
+│   ├── config/db.js
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── utils/fallbackStore.js
+│   └── server.js
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── context/
+│   │   ├── pages/
+│   │   └── services/
+│   └── vite.config.js
+├── tests/
+├── bruno/
+├── docker-compose.yml
+├── render.yaml
+└── README
+```
+
+---
+
+## Getting Started
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/Saravanan845/fitness_membership_analysis.git
+cd fitness_membership_analysis
+
+# 2. Start the backend
+cd backend
+npm install
+npm run dev        # Runs on http://localhost:5000
+
+# 3. Start the frontend (new terminal)
+cd frontend
+npm install
+npm run dev        # Runs on http://localhost:5173
+```
+
+**Demo login:** `admin` / `adminpassword123`
+
+---
+
+*Kalvium Capstone Project — Batch 2026 | FitTrack Analytics by Saravanan*
