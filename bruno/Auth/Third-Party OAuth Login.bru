@@ -1,0 +1,19 @@
+meta {
+  name: Third-Party OAuth Login
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/auth/oauth-login
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email": "demo.trainer@gmail.com",
+    "name": "Demo Google Trainer",
+    "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150"
+  }
+}

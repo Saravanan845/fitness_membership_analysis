@@ -1,0 +1,40 @@
+{
+  "name": "fittrack-retention-backend",
+  "version": "1.0.0",
+  "description": "Fitness Center Membership & Retention Analytics Backend - MERN Stack",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "seed": "node utils/seedData.js",
+    "test": "jest --runInBand --detectOpenHandles --forceExit"
+  },
+  "keywords": ["mern", "fitness", "retention", "analytics", "express", "mongodb"],
+  "author": "FitTrack Analytics Team",
+  "license": "ISC",
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "csv-parser": "^3.0.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.5",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testTimeout": 30000,
+    "setupFilesAfterEnv": ["<rootDir>/../tests/setup.js"],
+    "testMatch": [
+      "<rootDir>/../tests/**/*.test.js",
+      "<rootDir>/**/*.test.js"
+    ]
+  }
+}

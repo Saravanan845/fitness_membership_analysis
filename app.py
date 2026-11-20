@@ -210,7 +210,7 @@ with ai_col1:
     
     # Extract member metrics for context
     member_context = None
-    if selected_member_str != "None (General Campaign)":
+    if selected_member_str != "None (General Campaign)": 
         m_id = selected_member_str.split(" ")[0]
         m_row = df[df.Member_ID == m_id].iloc[0]
         member_context = {

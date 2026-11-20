@@ -1,0 +1,15 @@
+meta {
+  name: Get Overview Analytics
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/analytics/overview
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}

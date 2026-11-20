@@ -1,0 +1,22 @@
+meta {
+  name: Generate Member Retention Insights
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/ai/member-insights
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "memberId": "M1004",
+    "customPrompt": "Suggest best re-activation strategy for a member inactive for over 30 days."
+  }
+}

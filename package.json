@@ -1,0 +1,16 @@
+{
+  "name": "fitness-retention-analytics",
+  "version": "1.0.0",
+  "description": "Fitness Center Membership & Retention Analytics - Full Stack MERN Application",
+  "scripts": {
+    "start": "node backend/server.js",
+    "backend": "cd backend && npm run dev",
+    "frontend": "cd frontend && npm run dev",
+    "seed": "cd backend && npm run seed",
+    "test": "cd backend && npm test",
+    "install:all": "cd backend && npm install && cd ../frontend && npm install"
+  },
+  "keywords": ["mern", "fitness-analytics", "retention", "kalvium-project"],
+  "author": "FitTrack Analytics Team",
+  "license": "ISC"
+}
