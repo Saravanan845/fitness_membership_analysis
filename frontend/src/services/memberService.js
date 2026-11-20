@@ -16,7 +16,9 @@ const FALLBACK_MEMBERS = [
 export const getMembers = async (params) => {
   try {
     const response = await api.get('/members', { params });
-    return response.data;
+    const data = response.data?.data || [];
+    const pagination = response.data?.pagination || { page: 1, pages: 1, total: data.length };
+    return { success: true, data, pagination };
   } catch {
     return { success: true, data: FALLBACK_MEMBERS, pagination: { page: 1, pages: 1, total: FALLBACK_MEMBERS.length } };
   }

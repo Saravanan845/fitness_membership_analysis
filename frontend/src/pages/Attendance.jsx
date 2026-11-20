@@ -29,9 +29,9 @@ const Attendance = ({ onOpenAttendanceModal }) => {
         getAttendanceStats()
       ]);
 
-      setLogs(logsRes.data);
-      setPagination(logsRes.pagination);
-      setStats(statsRes.data);
+      setLogs(logsRes.data || []);
+      setPagination(logsRes.pagination || { page: 1, pages: 1, total: logsRes.data?.length || 0 });
+      setStats(statsRes?.data || null);
       setError('');
     } catch (err) {
       setError(err.response?.data?.message || err.message || 'Failed to load attendance');
@@ -133,7 +133,7 @@ const Attendance = ({ onOpenAttendanceModal }) => {
         </div>
 
         <span style={{ fontSize: '0.8rem', color: '#64748b' }}>
-          Total logged events: {pagination.total}
+          Total logged events: {pagination?.total || logs?.length || 0}
         </span>
       </div>
 

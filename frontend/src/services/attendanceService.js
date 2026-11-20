@@ -20,7 +20,9 @@ const FALLBACK_STATS = {
 export const getAttendanceLogs = async (params) => {
   try {
     const response = await api.get('/attendance', { params });
-    return response.data;
+    const data = response.data?.data || [];
+    const pagination = response.data?.pagination || { page: 1, pages: 1, total: data.length };
+    return { success: true, data, pagination };
   } catch {
     return { success: true, data: FALLBACK_LOGS, pagination: { page: 1, pages: 1, total: FALLBACK_LOGS.length } };
   }

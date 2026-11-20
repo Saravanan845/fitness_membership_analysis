@@ -55,7 +55,16 @@ const getAttendanceLogs = async (req, res) => {
   try {
     if (!isMongoConnected()) {
       const logs = store.getAttendanceLogs({ limit: req.query.limit || 50 });
-      return res.status(200).json({ success: true, data: logs });
+      return res.status(200).json({
+        success: true,
+        data: logs,
+        pagination: {
+          total: logs.length,
+          page: 1,
+          pages: 1,
+          limit: logs.length
+        }
+      });
     }
 
     const { memberId, activityType, startDate, endDate, page = 1, limit = 30 } = req.query;

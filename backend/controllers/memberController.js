@@ -15,7 +15,19 @@ const getMembers = async (req, res) => {
 
     if (!isMongoConnected()) {
       const result = store.getMembers({ search, status, riskLevel, engagementLevel, renewed, page, limit });
-      return res.status(200).json({ success: true, data: result.data, total: result.total });
+      const pageNum = parseInt(page, 10) || 1;
+      const limitNum = parseInt(limit, 10) || 25;
+      return res.status(200).json({
+        success: true,
+        data: result.data,
+        total: result.total,
+        pagination: {
+          total: result.total,
+          page: pageNum,
+          pages: Math.ceil(result.total / limitNum) || 1,
+          limit: limitNum
+        }
+      });
     }
 
     const query = {};

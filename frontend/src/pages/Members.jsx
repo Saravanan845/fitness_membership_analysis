@@ -38,8 +38,8 @@ const Members = ({ onOpenMemberModal, onOpenAttendanceModal, onOpenMembershipMod
       };
 
       const res = await getMembers(params);
-      setMembers(res.data);
-      setPagination(res.pagination);
+      setMembers(res.data || []);
+      setPagination(res.pagination || { page: 1, pages: 1, total: res.data?.length || 0 });
       setError('');
     } catch (err) {
       setError(err.response?.data?.message || err.message || 'Failed to fetch members');
@@ -75,7 +75,7 @@ const Members = ({ onOpenMemberModal, onOpenAttendanceModal, onOpenMembershipMod
             Member Management
           </h1>
           <p style={{ fontSize: '0.875rem', color: '#94a3b8', marginTop: '0.2rem' }}>
-            Total Registered: {pagination.total} members across all tiers
+            Total Registered: {pagination?.total || 0} members across all tiers
           </p>
         </div>
 
@@ -267,23 +267,23 @@ const Members = ({ onOpenMemberModal, onOpenAttendanceModal, onOpenMembershipMod
         </div>
 
         {/* Pagination Footer */}
-        {pagination.pages > 1 && (
+        {(pagination?.pages || 0) > 1 && (
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem 1.25rem', borderTop: '1px solid #1e293b' }}>
             <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>
-              Showing Page {pagination.page} of {pagination.pages} ({pagination.total} total)
+              Showing Page {pagination?.page || 1} of {pagination?.pages || 1} ({pagination?.total || 0} total)
             </span>
             <div style={{ display: 'flex', gap: '0.5rem' }}>
               <button
-                disabled={pagination.page <= 1}
-                onClick={() => fetchMembersList(pagination.page - 1)}
+                disabled={(pagination?.page || 1) <= 1}
+                onClick={() => fetchMembersList((pagination?.page || 1) - 1)}
                 className="btn-secondary"
                 style={{ padding: '0.35rem 0.65rem' }}
               >
                 <ChevronLeft size={16} />
               </button>
               <button
-                disabled={pagination.page >= pagination.pages}
-                onClick={() => fetchMembersList(pagination.page + 1)}
+                disabled={(pagination?.page || 1) >= (pagination?.pages || 1)}
+                onClick={() => fetchMembersList((pagination?.page || 1) + 1)}
                 className="btn-secondary"
                 style={{ padding: '0.35rem 0.65rem' }}
               >
